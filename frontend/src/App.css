@@ -1252,6 +1252,7 @@ nav svg {
     left: 0;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    z-index: 5;
   }
   nav .hamburger {
     display: flex;
@@ -1261,31 +1262,53 @@ nav svg {
   nav .navLinks {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 15px 7.5px;
-    z-index: 2;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 14px;
+    padding: calc(86px + env(safe-area-inset-top)) 16px 18px;
+    z-index: 4;
     transition: 0.3s;
     position: fixed;
     left: 0;
-    height: 100%;
-    width: min(400px, 88vw);
+    top: 0;
+    height: 100dvh;
+    width: min(380px, 86vw);
     background: #ffffff;
-    top: 79px;
     transform: translateX(-105%);
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav .navLinks::-webkit-scrollbar {
+    display: none;
   }
   nav .navLinks.showmenu {
     transform: translateX(0);
   }
   nav .navLinks .links {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    gap: 6px;
   }
   nav .navLinks .links a {
     font-weight: 700;
+    display: block;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+  nav .navLinks .links a:hover {
+    background: rgba(39, 23, 118, 0.06);
+  }
+  nav .navLinks .btn {
+    width: 100%;
+    border-radius: 12px;
+    padding: 12px 14px;
   }
   nav .logoutBtn {
-    margin-top: 20px;
+    margin-top: 4px;
   }
   .navBackdrop {
     display: block;
@@ -1295,7 +1318,7 @@ nav svg {
     opacity: 0;
     pointer-events: none;
     transition: 0.25s;
-    z-index: 1;
+    z-index: 3;
   }
   .navBackdrop.navBackdrop--show {
     opacity: 1;
@@ -1304,7 +1327,7 @@ nav svg {
 }
 @media (max-width: 800px) {
   nav .navLinks {
-    width: 92vw;
+    width: min(420px, 92vw);
   }
 }
 @media (max-width: 650px) {
