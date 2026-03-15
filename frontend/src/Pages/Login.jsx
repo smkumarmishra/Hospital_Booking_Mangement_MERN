@@ -18,12 +18,12 @@ const Login = () => {
     try {
       await axios
         .post(
-          "https://hospital-backend-tpva.onrender.com/api/v1/login",
+          "https://hospital-backend-tpva.onrender.com/api/v1/user/login",
           { email, password, confirmPassword, role: "Patient" },
           {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
-          }
+          },
         )
         .then((res) => {
           toast.success(res.data.message);
@@ -50,7 +50,9 @@ const Login = () => {
             <div className="auth-heroBadge">Patient Portal</div>
             <div className="auth-heroCopy">
               <h2>Secure, quick access</h2>
-              <p>Book appointments, view departments, and manage your profile.</p>
+              <p>
+                Book appointments, view departments, and manage your profile.
+              </p>
             </div>
             <img className="auth-heroArt" src="/signin.png" alt="" />
           </div>
@@ -86,7 +88,9 @@ const Login = () => {
               </div>
 
               <div className="auth-field">
-                <label htmlFor="patient-confirm-password">Confirm Password</label>
+                <label htmlFor="patient-confirm-password">
+                  Confirm Password
+                </label>
                 <input
                   id="patient-confirm-password"
                   type="password"

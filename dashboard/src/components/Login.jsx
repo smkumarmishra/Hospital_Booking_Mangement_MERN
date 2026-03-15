@@ -18,12 +18,12 @@ const Login = () => {
     try {
       await axios
         .post(
-          "https://hospital-backend-tpva.onrender.com/api/v1/login",
+          "https://hospital-backend-tpva.onrender.com/api/v1/user/login",
           { email, password, confirmPassword, role: "Admin" },
           {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
-          }
+          },
         )
         .then((res) => {
           toast.success(res.data.message);
@@ -35,7 +35,7 @@ const Login = () => {
         });
     } catch (error) {
       toast.error(
-        error?.response?.data?.message || error?.message || "Login failed"
+        error?.response?.data?.message || error?.message || "Login failed",
       );
     }
   };

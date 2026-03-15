@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 128">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff2d2d"></stop>
+      <stop offset="100%" style="stop-color:#6a2cff"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Red Cross -->
+  <rect x="30" y="40" width="40" height="80" fill="#ff2d2d"></rect>
+  <rect x="10" y="60" width="80" height="40" fill="#ff2d2d"></rect>
+
+  <!-- Circle head -->
+  <circle cx="40" cy="20" r="10" fill="#6a2cff"></circle>
+
+  <!-- Curve -->
+  <path d="M50 25 Q140 10 120 90" stroke="#ff2d2d" stroke-width="4" fill="none"></path>
+
+  <!-- Text -->
+  <text x="150" y="65" font-family="Arial, sans-serif" font-size="32" fill="#000">
+    KITUCARE
+  </text>
+
+  <rect x="150" y="75" width="200" height="3" fill="url(#grad)"></rect>
+
+  <text x="150" y="105" font-family="Arial, sans-serif" font-size="14" fill="#444">
+    MEDICAL INSTITUTE
+  </text>
+</svg>
