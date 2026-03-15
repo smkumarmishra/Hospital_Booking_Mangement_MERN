@@ -18,21 +18,30 @@ const __dirname = path.dirname(__filename);
 config({ path: path.join(__dirname, "config", "config.env") });
 
 const allowedOrigins = new Set(
-  [process.env.FRONTEND_URL, process.env.FRONTEND_URL_ONE, process.env.DASHBOARD_URL].filter(
-    Boolean
-  )
+  [
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL_ONE,
+    process.env.DASHBOARD_URL,
+  ].filter(Boolean),
 );
+
+// app.use(
+//   cors({
+//     origin(origin, callback) {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.has(origin)) return callback(null, true);
+//       return callback(null, false);
+//     },
+//     methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+//     credentials: true,
+//   })
+// );
 
 app.use(
   cors({
-    origin(origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.has(origin)) return callback(null, true);
-      return callback(null, false);
-    },
-    methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+    origin: true,
     credentials: true,
-  })
+  }),
 );
 
 app.use(cookieParser());
@@ -43,7 +52,7 @@ app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: os.tmpdir(),
-  })
+  }),
 );
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
