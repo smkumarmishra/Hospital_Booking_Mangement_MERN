@@ -41,7 +41,7 @@ const Department = () => {
       setError("");
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/user/doctors",
+          "https://hospital-backend-tpva.onrender.com/api/v1/doctors",
           { withCredentials: true }
         );
         setDoctors(Array.isArray(data?.doctors) ? data.doctors : []);

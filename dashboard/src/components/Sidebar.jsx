@@ -18,16 +18,19 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/user/admin/logout", {
-        withCredentials: true,
-      })
+      .get(
+        "https://hospital-backend-tpva.onrender.com/api/v1/user/admin/logout",
+        {
+          withCredentials: true,
+        },
+      )
       .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
       })
       .catch((err) => {
         toast.error(
-          err?.response?.data?.message || err?.message || "Logout failed"
+          err?.response?.data?.message || err?.message || "Logout failed",
         );
       });
   };

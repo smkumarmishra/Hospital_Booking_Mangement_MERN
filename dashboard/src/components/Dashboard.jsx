@@ -14,10 +14,10 @@ const Dashboard = () => {
     const fetchAppointments = async () => {
       try {
         const [appointmentsRes, doctorsRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/v1/appointment/getall", {
+          axios.get("https://hospital-backend-tpva.onrender.com/api/v1/appointment/getall", {
             withCredentials: true,
           }),
-          axios.get("http://localhost:5000/api/v1/user/doctors", {
+          axios.get("https://hospital-backend-tpva.onrender.com/api/v1/user/doctors", {
             withCredentials: true,
           }),
         ]);
@@ -35,7 +35,7 @@ const Dashboard = () => {
   const handleUpdateStatus = async (appointmentId, status) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:5000/api/v1/appointment/update/${appointmentId}`,
+        `https://hospital-backend-tpva.onrender.com/api/v1/appointment/update/${appointmentId}`,
         { status },
         { withCredentials: true },
       );
