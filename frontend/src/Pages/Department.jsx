@@ -41,13 +41,30 @@ const Department = () => {
       setError("");
       try {
         const { data } = await axios.get(
-          "https://hospital-backend-tpva.onrender.com/api/v1/doctors",
-          { withCredentials: true }
+          "https://hospital-backend-tpva.onrender.com/api/v1/user/doctors",
+          { withCredentials: true },
         );
         setDoctors(Array.isArray(data?.doctors) ? data.doctors : []);
       } catch (e) {
         setDoctors([]);
-        setError(e?.response?.data?.message ?? "Failed to load doctors.");
+        const status = e?.response?.status;
+        const responseData = e?.response?.data;
+        const serverMessage =
+          responseData && typeof responseData === "object"
+            ? responseData.message
+            : undefined;
+        console.error("Failed to load doctors:", {
+          url: "https://hospital-backend-tpva.onrender.com/api/v1/user/doctors",
+          status,
+          message: e?.message,
+          data: responseData,
+        });
+        setError(
+          serverMessage ??
+            (status ? `Failed to load doctors (HTTP ${status}).` : null) ??
+            e?.message ??
+            "Failed to load doctors.",
+        );
       } finally {
         setLoading(false);
       }
