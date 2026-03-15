@@ -1227,9 +1227,16 @@ nav .loginBtn {
 }
 nav .hamburger {
   display: none;
+  border: none;
+  background: transparent;
+  padding: 8px;
+  cursor: pointer;
 }
 nav svg {
   font-size: 1.75rem;
+}
+.navBackdrop {
+  display: none;
 }
 @media (max-width: 1520px) {
   nav {
@@ -1243,9 +1250,13 @@ nav svg {
     position: fixed;
     top: 0;
     left: 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   }
   nav .hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
   nav .navLinks {
     display: flex;
@@ -1257,23 +1268,14 @@ nav svg {
     position: fixed;
     left: 0;
     height: 100%;
-    width: 400px;
-    background: #ffffffbf;
+    width: min(400px, 88vw);
+    background: #ffffff;
     top: 79px;
+    transform: translateX(-105%);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
   }
-  nav .showmenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 15px 7.5px;
-    z-index: 2;
-    transition: 0.3s;
-    position: fixed;
-    left: -100%;
-    width: 400px;
-    height: 100%;
-    background: #ffffffbf;
-    top: 79px;
+  nav .navLinks.showmenu {
+    transform: translateX(0);
   }
   nav .navLinks .links {
     flex-direction: column;
@@ -1285,14 +1287,28 @@ nav svg {
   nav .logoutBtn {
     margin-top: 20px;
   }
+  .navBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s;
+    z-index: 1;
+  }
+  .navBackdrop.navBackdrop--show {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 @media (max-width: 800px) {
-  nav .showmenu {
-    width: 96vw;
+  nav .navLinks {
+    width: 92vw;
   }
 }
 @media (max-width: 650px) {
-  nav .showmenu {
+  nav .navLinks {
     margin: 0;
     width: 100%;
     border-radius: 0;

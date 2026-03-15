@@ -56,7 +56,7 @@ const AppointmentForm = ({
     try {
       const hasVisitedBool = Boolean(hasVisited);
       const { data } = await axios.post(
-        "https://hospital-backend-tpva.onrender.com/api/v1/user/appointment/post",
+        "https://hospital-backend-tpva.onrender.com/api/v1/appointment/post",
         {
           firstName,
           lastName,

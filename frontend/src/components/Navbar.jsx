@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,6 +8,18 @@ import { Context } from "../main";
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setShow(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = show ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [show]);
 
   const handleLogout = async () => {
     await axios
@@ -17,6 +29,7 @@ const Navbar = () => {
       .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
+        setShow(false);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -26,6 +39,7 @@ const Navbar = () => {
   const navigateTo = useNavigate();
 
   const goToLogin = () => {
+    setShow(false);
     navigateTo("/login");
   };
 
@@ -37,13 +51,13 @@ const Navbar = () => {
         </div>
         <div className={show ? "navLinks showmenu" : "navLinks"}>
           <div className="links">
-            <Link to={"/"} onClick={() => setShow(!show)}>
+            <Link to={"/"} onClick={() => setShow(false)}>
               Home
             </Link>
-            <Link to={"/appointment"} onClick={() => setShow(!show)}>
+            <Link to={"/appointment"} onClick={() => setShow(false)}>
               Appointment
             </Link>
-            <Link to={"/about"} onClick={() => setShow(!show)}>
+            <Link to={"/about"} onClick={() => setShow(false)}>
               About Us
             </Link>
           </div>
@@ -57,10 +71,20 @@ const Navbar = () => {
             </button>
           )}
         </div>
-        <div className="hamburger" onClick={() => setShow(!show)}>
-          <GiHamburgerMenu />
-        </div>
+        <button
+          type="button"
+          className="hamburger"
+          aria-label={show ? "Close menu" : "Open menu"}
+          aria-expanded={show}
+          onClick={() => setShow((prev) => !prev)}
+        >
+          <GiHamburgerMenu aria-hidden="true" />
+        </button>
       </nav>
+      <div
+        className={show ? "navBackdrop navBackdrop--show" : "navBackdrop"}
+        onClick={() => setShow(false)}
+      />
     </>
   );
 };
