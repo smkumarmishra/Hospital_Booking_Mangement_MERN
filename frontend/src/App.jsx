@@ -21,7 +21,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://hospital-backend-tpva.onrender.com/api/v1/user/me",
+          "https://hospital-backend-tpva.onrender.com/api/v1/user/patient/me",
           {
             withCredentials: true,
           }
