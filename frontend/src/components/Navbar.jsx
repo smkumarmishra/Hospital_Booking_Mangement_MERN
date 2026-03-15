@@ -22,17 +22,22 @@ const Navbar = () => {
   }, [show]);
 
   const handleLogout = async () => {
+    const token = localStorage.getItem("token");
     await axios
-      .get("https://hospital-backend-tpva.onrender.com/api/v1/user/logout", {
+      .get("https://hospital-backend-tpva.onrender.com/api/v1/user/patient/logout", {
         withCredentials: true,
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
       })
       .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
+        localStorage.removeItem("token");
         setShow(false);
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        toast.error(
+          err?.response?.data?.message ?? "Logout failed. Please try again.",
+        );
       });
   };
 

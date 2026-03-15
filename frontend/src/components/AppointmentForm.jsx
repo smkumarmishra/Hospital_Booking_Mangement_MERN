@@ -78,32 +78,33 @@ const AppointmentForm = ({
       //   },
       // );
 
-      const token = localStorage.getItem("token"); // ✅ get token
+      const token = localStorage.getItem("token");
 
-const { data } = await axios.post(
-  "https://hospital-backend-tpva.onrender.com/api/v1/appointment/post",
-  {
-    firstName,
-    lastName,
-    email,
-    phone,
-    nic,
-    dob,
-    gender,
-    appointment_date: appointmentDate,
-    department,
-    doctor_firstName: doctorFirstName,
-    doctor_lastName: doctorLastName,
-    hasVisited: hasVisitedBool,
-    address,
-  },
-  {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`, // ✅ token added
-    },
-  },
-);
+      const { data } = await axios.post(
+        "https://hospital-backend-tpva.onrender.com/api/v1/appointment/post",
+        {
+          firstName,
+          lastName,
+          email,
+          phone,
+          nic,
+          dob,
+          gender,
+          appointment_date: appointmentDate,
+          department,
+          doctor_firstName: doctorFirstName,
+          doctor_lastName: doctorLastName,
+          hasVisited: hasVisitedBool,
+          address,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        },
+      );
       toast.success(data.message);
       setFirstName("");
       setLastName("");
@@ -123,7 +124,9 @@ const { data } = await axios.post(
       setHasVisited(false);
       setAddress("");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(
+        error?.response?.data?.message ?? "Failed to book appointment.",
+      );
     }
   };
 

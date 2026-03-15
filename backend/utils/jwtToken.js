@@ -12,11 +12,21 @@ export const generateToken = (user, message, statusCode, res) => {
     60 *
     1000;
 
+  const isProd = String(process.env.NODE_ENV).toLowerCase() === "production";
+  const sameSite =
+    process.env.COOKIE_SAMESITE ?? (isProd ? "none" : "lax");
+  const secure =
+    process.env.COOKIE_SECURE != null
+      ? String(process.env.COOKIE_SECURE).toLowerCase() === "true"
+      : isProd;
+
   res
     .status(statusCode)
     .cookie(cookieName, token, {
       expires: new Date(Date.now() + cookieExpireMs),
       httpOnly: true,
+      sameSite,
+      secure,
     })
     .json({
       success: true,

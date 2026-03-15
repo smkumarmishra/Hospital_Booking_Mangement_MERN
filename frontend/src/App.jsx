@@ -14,19 +14,20 @@ import axios from "axios";
 import { Context } from "./main";
 import Login from "./Pages/Login";
 const App = () => {
-  const { isAuthenticated, setIsAuthenticated, setUser, setAuthResolved } =
-    useContext(Context);
+  const { setIsAuthenticated, setUser, setAuthResolved } = useContext(Context);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        const token = localStorage.getItem("token");
         const response = await axios.get(
           "https://hospital-backend-tpva.onrender.com/api/v1/user/patient/me",
           // {
           //   withCredentials: true,
           // }
           {
-            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
           },
         );
         setIsAuthenticated(true);
@@ -39,7 +40,7 @@ const App = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [setAuthResolved, setIsAuthenticated, setUser]);
 
   return (
     <>
