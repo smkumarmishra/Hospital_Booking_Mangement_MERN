@@ -55,28 +55,55 @@ const AppointmentForm = ({
     e.preventDefault();
     try {
       const hasVisitedBool = Boolean(hasVisited);
-      const { data } = await axios.post(
-        "https://hospital-backend-tpva.onrender.com/api/v1/appointment/post",
-        {
-          firstName,
-          lastName,
-          email,
-          phone,
-          nic,
-          dob,
-          gender,
-          appointment_date: appointmentDate,
-          department,
-          doctor_firstName: doctorFirstName,
-          doctor_lastName: doctorLastName,
-          hasVisited: hasVisitedBool,
-          address,
-        },
-        {
-          withCredentials: true,
-          headers: { "Content-Type": "application/json" },
-        },
-      );
+      // const { data } = await axios.post(
+      //   "https://hospital-backend-tpva.onrender.com/api/v1/appointment/post",
+      //   {
+      //     firstName,
+      //     lastName,
+      //     email,
+      //     phone,
+      //     nic,
+      //     dob,
+      //     gender,
+      //     appointment_date: appointmentDate,
+      //     department,
+      //     doctor_firstName: doctorFirstName,
+      //     doctor_lastName: doctorLastName,
+      //     hasVisited: hasVisitedBool,
+      //     address,
+      //   },
+      //   {
+      //     withCredentials: true,
+      //     headers: { "Content-Type": "application/json" },
+      //   },
+      // );
+
+      const token = localStorage.getItem("token"); // ✅ get token
+
+const { data } = await axios.post(
+  "https://hospital-backend-tpva.onrender.com/api/v1/appointment/post",
+  {
+    firstName,
+    lastName,
+    email,
+    phone,
+    nic,
+    dob,
+    gender,
+    appointment_date: appointmentDate,
+    department,
+    doctor_firstName: doctorFirstName,
+    doctor_lastName: doctorLastName,
+    hasVisited: hasVisitedBool,
+    address,
+  },
+  {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, // ✅ token added
+    },
+  },
+);
       toast.success(data.message);
       setFirstName("");
       setLastName("");

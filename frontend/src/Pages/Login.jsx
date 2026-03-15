@@ -25,14 +25,27 @@ const Login = () => {
             headers: { "Content-Type": "application/json" },
           },
         )
+        // .then((res) => {
+        //   toast.success(res.data.message);
+        //   setIsAuthenticated(true);
+        //   navigateTo("/");
+        //   setEmail("");
+        //   setPassword("");
+        //   setConfirmPassword("");
+        // });
+
         .then((res) => {
-          toast.success(res.data.message);
-          setIsAuthenticated(true);
-          navigateTo("/");
-          setEmail("");
-          setPassword("");
-          setConfirmPassword("");
-        });
+  const token = res.data.token; // ✅ login response  token
+  if (token) {
+    localStorage.setItem("token", token); // ✅ store token
+  }
+  toast.success(res.data.message);
+  setIsAuthenticated(true);
+  navigateTo("/");
+  setEmail("");
+  setPassword("");
+  setConfirmPassword("");
+});
     } catch (error) {
       toast.error(error.response.data.message);
     }
