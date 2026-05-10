@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import axios from "axios";
@@ -6,20 +6,22 @@ import { toast } from "react-toastify";
 import { Context } from "../main";
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const { menuOpen, setMenuOpen, isAuthenticated, setIsAuthenticated } =
+    useContext(Context);
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setShow(false);
-  }, [pathname]);
+    setMenuOpen(false);
+  }, [pathname, setMenuOpen]);
 
   useEffect(() => {
-    document.body.style.overflow = show ? "hidden" : "";
+    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
-  }, [show]);
+  }, [menuOpen]);
 
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
@@ -32,7 +34,7 @@ const Navbar = () => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
         localStorage.removeItem("token");
-        setShow(false);
+        setMenuOpen(false);
       })
       .catch((err) => {
         toast.error(
@@ -44,7 +46,7 @@ const Navbar = () => {
   const navigateTo = useNavigate();
 
   const goToLogin = () => {
-    setShow(false);
+    setMenuOpen(false);
     navigateTo("/login");
   };
 
@@ -54,15 +56,15 @@ const Navbar = () => {
         <div className="logo">
           <img src="/logo.png" alt="logo" className="logo-img" />
         </div>
-        <div className={show ? "navLinks showmenu" : "navLinks"}>
+        <div className="navLinksDesktop">
           <div className="links">
-            <Link to={"/"} onClick={() => setShow(false)}>
+            <Link to={"/"}>
               Home
             </Link>
-            <Link to={"/appointment"} onClick={() => setShow(false)}>
+            <Link to={"/appointment"}>
               Appointment
             </Link>
-            <Link to={"/about"} onClick={() => setShow(false)}>
+            <Link to={"/about"}>
               About Us
             </Link>
           </div>
@@ -79,17 +81,13 @@ const Navbar = () => {
         <button
           type="button"
           className="hamburger"
-          aria-label={show ? "Close menu" : "Open menu"}
-          aria-expanded={show}
-          onClick={() => setShow((prev) => !prev)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((prev) => !prev)}
         >
           <GiHamburgerMenu aria-hidden="true" />
         </button>
       </nav>
-      <div
-        className={show ? "navBackdrop navBackdrop--show" : "navBackdrop"}
-        onClick={() => setShow(false)}
-      />
     </>
   );
 };

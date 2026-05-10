@@ -59,6 +59,14 @@ const Login = () => {
     <>
       <section className="auth-page">
         <div className="auth-card auth-card--login">
+          <button
+            type="button"
+            className="auth-close"
+            aria-label="Close"
+            onClick={() => navigateTo("/")}
+          >
+            ×
+          </button>
           <div className="auth-hero" aria-hidden="true">
             <div className="auth-heroBadge">Patient Portal</div>
             <div className="auth-heroCopy">

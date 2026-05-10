@@ -56,6 +56,14 @@ const Register = () => {
     <>
       <section className="auth-page">
         <div className="auth-card auth-card--register">
+          <button
+            type="button"
+            className="auth-close"
+            aria-label="Close"
+            onClick={() => navigateTo("/")}
+          >
+            ×
+          </button>
           <div className="auth-hero" aria-hidden="true">
             <div className="auth-heroBadge">New Patient</div>
             <div className="auth-heroCopy">

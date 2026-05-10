@@ -8,6 +8,7 @@ import Register from "./Pages/Register";
 import Department from "./Pages/Department";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import MobileMenu from "./components/MobileMenu";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -46,6 +47,7 @@ const App = () => {
     <>
       <Router>
         <Navbar />
+        <MobileMenu />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<Appointment />} />

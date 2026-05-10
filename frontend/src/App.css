@@ -15,7 +15,9 @@ body {
   border: none;
   font-weight: bold;
   letter-spacing: 2px;
+  cursor: pointer;
 }
+
 .white-btn {
   background: #fff;
   color: #111;
@@ -248,7 +250,8 @@ h6 {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       900px 600px at 12% 10%,
       rgba(144, 131, 213, 0.42),
       transparent 55%
@@ -267,10 +270,40 @@ h6 {
   border: 1px solid rgba(39, 23, 118, 0.12);
   border-radius: 24px;
   overflow: hidden;
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(10px);
+}
+.auth-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(39, 23, 118, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+  color: #271776ca;
+  font-size: 26px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+  z-index: 2;
+}
+.auth-close:hover {
+  transform: scale(1.05);
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+}
+.auth-close:active {
+  transform: scale(0.98);
 }
 .auth-card.auth-card--register {
   grid-template-columns: 1.1fr 1.2fr;
@@ -282,7 +315,8 @@ h6 {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       900px 600px at 10% 20%,
       rgba(255, 255, 255, 0.18),
       transparent 55%
@@ -371,7 +405,9 @@ h6 {
   padding: 12px 14px;
   font-size: 16px;
   outline: none;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease,
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
     transform 0.2s ease;
 }
 .auth-field input:focus,
@@ -410,7 +446,9 @@ h6 {
   cursor: pointer;
   background: linear-gradient(140deg, #9083d5, #271776ca);
   box-shadow: 0 14px 26px rgba(39, 23, 118, 0.18);
-  transition: transform 0.15s ease, box-shadow 0.15s ease,
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
     filter 0.15s ease;
 }
 .auth-btn:hover {
@@ -477,13 +515,16 @@ h6 {
   grid-template-columns: 1fr 1.2fr;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(10px);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 .form-shell::before {
   content: "";
   position: absolute;
   inset: -2px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       800px 420px at 20% 10%,
       rgba(144, 131, 213, 0.22),
       transparent 60%
@@ -531,7 +572,8 @@ h6 {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       900px 600px at 10% 20%,
       rgba(255, 255, 255, 0.18),
       transparent 55%
@@ -541,7 +583,8 @@ h6 {
   z-index: 1;
 }
 .form-shell--contact .form-shell__aside {
-  background: radial-gradient(
+  background:
+    radial-gradient(
       900px 600px at 10% 20%,
       rgba(255, 255, 255, 0.18),
       transparent 55%
@@ -584,7 +627,8 @@ h6 {
   justify-content: center;
   position: relative;
   z-index: 1;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       900px 520px at 30% 10%,
       rgba(144, 131, 213, 0.14),
       transparent 55%
@@ -643,7 +687,9 @@ h6 {
   padding: 12px 14px;
   font-size: 16px;
   outline: none;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease,
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
     transform 0.2s ease;
   min-height: 48px;
 }
@@ -777,7 +823,9 @@ h6 {
   cursor: pointer;
   background: linear-gradient(140deg, #9083d5, #271776ca);
   box-shadow: 0 14px 26px rgba(39, 23, 118, 0.18);
-  transition: transform 0.15s ease, box-shadow 0.15s ease,
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
     filter 0.15s ease;
 }
 .form-shell .form-shell__btn:hover {
@@ -1022,7 +1070,9 @@ footer .content div:last-child div svg {
 }
 .depart-card {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .depart-card:hover {
   transform: translateY(-4px);
@@ -1185,45 +1235,72 @@ nav .logo {
   align-items: center;
   font-size: 2rem;
 }
-nav .navLinks {
+nav .navLinksDesktop {
   flex: 2;
 }
-nav .navLinks {
+nav .navLinksDesktop {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-nav .navLinks .links {
+nav .navLinksDesktop .links {
   display: flex;
   gap: 25px;
 }
-nav .navLinks .links a {
+nav .navLinksDesktop .links a {
   text-decoration: none;
   color: #222;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 1.4px;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
 }
-nav .navLinks .links a:hover {
+nav .navLinksDesktop .links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+nav .navLinksDesktop .links a:hover {
   color: #000;
-  transition: 0.3s;
   cursor: pointer;
 }
-nav .btn {
+nav .navLinksDesktop .links a:hover::after {
+  transform: scaleX(1);
+}
+.btn {
   padding: 8px 20px;
   color: #e5e5e5;
   background: transparent;
   border: none;
   border-radius: 20px;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
   z-index: 2;
 }
-nav .logoutBtn {
+.logoutBtn {
   background: linear-gradient(135deg, black, rgb(49, 49, 49));
 }
-nav .loginBtn {
+.logoutBtn:hover {
+  background: linear-gradient(135deg, rgb(49, 49, 49), black);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.loginBtn {
   background: linear-gradient(135deg, black, rgb(49, 49, 49));
+}
+.loginBtn:hover {
+  background: linear-gradient(135deg, rgb(251, 248, 248), black);
+  transition: 0.3s;
+  cursor: pointer;
 }
 nav .hamburger {
   display: none;
@@ -1236,6 +1313,9 @@ nav svg {
   font-size: 1.75rem;
 }
 .navBackdrop {
+  display: none;
+}
+.navLinks {
   display: none;
 }
 @media (max-width: 1520px) {
@@ -1252,62 +1332,74 @@ nav svg {
     left: 0;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    z-index: 5;
+    z-index: 1000;
   }
   nav .hamburger {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  nav .navLinks {
+  nav .navLinksDesktop {
+    display: none;
+  }
+  .navLinks {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
     gap: 14px;
     padding: calc(86px + env(safe-area-inset-top)) 16px 18px;
-    z-index: 4;
-    transition: 0.3s;
+    z-index: 1001;
+    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
+    bottom: 0;
     height: 100dvh;
-    width: min(380px, 86vw);
+    width: 50vw;
     background: #ffffff;
-    transform: translateX(-105%);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+    transform: translate3d(-110%, 0, 0);
+    will-change: transform;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
-  nav .navLinks::-webkit-scrollbar {
+  .navLinks::-webkit-scrollbar {
     display: none;
   }
-  nav .navLinks.showmenu {
-    transform: translateX(0);
+  .navLinks.showmenu {
+    transform: translate3d(0, 0, 0);
   }
-  nav .navLinks .links {
+  .navLinks .links {
     flex-direction: column;
+    width: 100%;
     text-align: left;
-    gap: 6px;
+    gap: 8px;
   }
-  nav .navLinks .links a {
+  .navLinks .links a {
     font-weight: 700;
     display: block;
+    text-decoration: none;
+    color: #222;
     padding: 12px 14px;
     border-radius: 12px;
+    background: transparent;
   }
-  nav .navLinks .links a:hover {
-    background: rgba(39, 23, 118, 0.06);
+  .navLinks .links a:visited {
+    color: #222;
   }
-  nav .navLinks .btn {
+  .navLinks .links a:hover {
+    background: rgba(39, 23, 118, 0.08);
+  }
+  .navLinks .btn {
     width: 100%;
     border-radius: 12px;
     padding: 12px 14px;
   }
-  nav .logoutBtn {
+  .navLinks .logoutBtn {
     margin-top: 4px;
   }
   .navBackdrop {
@@ -1318,7 +1410,7 @@ nav svg {
     opacity: 0;
     pointer-events: none;
     transition: 0.25s;
-    z-index: 3;
+    z-index: 1000;
   }
   .navBackdrop.navBackdrop--show {
     opacity: 1;
@@ -1326,14 +1418,19 @@ nav svg {
   }
 }
 @media (max-width: 800px) {
-  nav .navLinks {
-    width: min(420px, 92vw);
+  .navLinks {
+    padding: calc(92px + env(safe-area-inset-top)) 18px 22px;
+    gap: 16px;
+  }
+  .navLinks .links a,
+  .navLinks .btn {
+    padding: 13px 14px;
+    border-radius: 13px;
   }
 }
 @media (max-width: 650px) {
-  nav .navLinks {
+  .navLinks {
     margin: 0;
-    width: 100%;
     border-radius: 0;
   }
 }
@@ -1341,9 +1438,8 @@ nav svg {
   nav {
     background: #fff;
   }
-  nav .navLinks {
+  .navLinks {
     background: #fff;
-    width: 100%;
   }
 }
 
@@ -1357,9 +1453,10 @@ input[type="time"]:before {
   color: #444;
   margin-right: 0.5em;
 }
-.logo-img{
+.logo-img {
   width: 150px;
+  cursor: pointer;
 }
-footer .logo-img{
+footer .logo-img {
   width: 100%;
 }

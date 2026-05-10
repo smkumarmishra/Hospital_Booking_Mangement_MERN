@@ -46,6 +46,14 @@ const Departments = () => {
             "tablet",
             "mobile",
           ]}
+          infinite={true}
+          autoPlay={true}
+          autoPlaySpeed={3500}
+          transitionDuration={3500}
+          customTransition="transform 3500ms linear"
+          rtl={true}
+          pauseOnHover={true}
+          shouldResetAutoplay={false}
         >
           {departments.map((depart) => {
             return (

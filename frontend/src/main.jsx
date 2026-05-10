@@ -5,12 +5,14 @@ import App from "./App.jsx";
 export const Context = createContext({
   isAuthenticated: false,
   authResolved: false,
+  menuOpen: false,
 });
 
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authResolved, setAuthResolved] = useState(false);
   const [user, setUser] = useState({});
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <Context.Provider
@@ -21,6 +23,8 @@ const AppWrapper = () => {
         setAuthResolved,
         user,
         setUser,
+        menuOpen,
+        setMenuOpen,
       }}
     >
       <App />
